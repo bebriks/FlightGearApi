@@ -13,7 +13,6 @@ const MainApp = () => {
   const [sendingData, setSendingData] = useState([]);
 
   useEffect(() => { getPlanData(setPlan); }, []);
-  console.log(addMarker)
   const onRemoveData = async () => { await getPlanData(setPlan); }
 
   const handleClickAddFlight = (evt) => {
@@ -31,7 +30,6 @@ const MainApp = () => {
     <>
       <main className={`container`}>
         <div className={`row ${styles.cols}`}>
-          <h1 className={`display-3 text-center my-4 ${styles.title_main}`}>Make your own flight simulation</h1>
           <div className={`col ${styles.cols}`}>
             <div className={`shadow-lg bg-light rounded-4`}>
               <form className={`bg-light rounded-4 ${styles.add_stage}`} >

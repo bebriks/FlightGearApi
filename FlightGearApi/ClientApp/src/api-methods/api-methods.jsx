@@ -15,11 +15,10 @@ export const handleClickDeleteItem = async (props) => {
 };
 
 export const getPlanData = async (setPlan) => {
-  console.log(setPlan)
     try {
       await axios
         .get(SERVER_URL)
-        .then((response) => {setPlan(response.data); console.log(response.data)})
+        .then((response) => {setPlan(response.data);})
     } catch (err) {
       console.error('There was an error fetching the data:', err)
     }

@@ -16,7 +16,7 @@ const NavHeader = () => {
 
   const popoverPoints = (
     <Popover id="popover-basic">
-      <Popover.Header as="h3">Popover Title</Popover.Header>
+      <Popover.Header className={`justify-content-center`} as="h3">Points</Popover.Header>
       <Popover.Body>
         <MainApp/>
       </Popover.Body>
