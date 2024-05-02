@@ -12,7 +12,7 @@ function Plan() {
     <div className={`Plan`}>
       <NavHeader/>
       <MainMap/>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   );
 }

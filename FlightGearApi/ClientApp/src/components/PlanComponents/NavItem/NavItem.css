@@ -8,5 +8,5 @@
 
 }
 #popover-basic {
-    min-width: 400px;
+    min-width: fit-content;
 }

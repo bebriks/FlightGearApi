@@ -7,20 +7,69 @@ import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 import * as turf from '@turf/turf'
 
 function addControlPanel(map) {
-    map.addControl(new maplibregl.NavigationControl(), 'bottom-left');
+    map.addControl(new maplibregl.NavigationControl(), 'bottom-right');
 }
 
 function addMarker(map) {
     let markersSet = new Set();
-
     map.on('contextmenu', (e) => {
         const lngLat = Object.values(e.lngLat);
         markersSet.add(lngLat);
         const marker = createMarker(lngLat, map);
         const popup = createPopup(e, map, marker, markersSet);
         marker.setPopup(popup);
+        updateLine(map, Array.from(markersSet).map(coord => [coord[0], coord[1]]));
+        console.log(markersSet)
         return markersSet;
     });
+    return markersSet;
+}
+
+function updateLine(map, coordinates) {
+    console.log(coordinates)
+    if (map.getSource('line')) {
+        map.getSource('line').setData({
+            type: 'Feature',
+            geometry: {
+                type: 'LineString',
+                coordinates: coordinates
+            }
+        });
+    } else {
+        // Если источник данных линии не существует, добавляем его
+        map.addSource('line', {
+            type: 'geojson',
+            data: {
+                type: 'Feature',
+                geometry: {
+                    type: 'LineString',
+                    coordinates: coordinates
+                }
+            }
+        });
+
+        // Добавляем слой линии на карту
+        map.addLayer({
+            id: 'line',
+            type: 'line',
+            source: 'line',
+            layout: {
+                'line-join': 'round',
+                'line-cap': 'round'
+            },
+            paint: {
+                'line-color': '#0000FF',
+                'line-width': 5,
+                'line-opacity': 0.5,
+            }
+        });
+    }
+
+    
+}
+
+function getMarkerSet(marks) {
+    return marks;
 }
 
 function createMarker(lngLat, map) {
@@ -37,7 +86,12 @@ function createPopup(data, map, marker, markersSet) {
         <div class="popup-con">
             <p>Longitude: ${data.lngLat.lng}</p>
             <p>Latitude: ${data.lngLat.lat}</p>
-            <button class="btn delete-popup bg-primary" type="submit">
+            <p class="d-flex align-items-center">Altitude: <input class="altitude form-control" /></p>
+            <p class="d-flex align-items-center">Speed: <input class="speed form-control" /></p>
+            <button class="btn save-popup btn-primary text-light" type="submit">
+                save
+            </button>
+            <button class="btn delete-popup btn-secondary text-light" type="submit">
                 delete
             </button>
         </div>
@@ -52,11 +106,20 @@ function createPopup(data, map, marker, markersSet) {
                 markersSet.delete(markArr[i]);
             }
         }
+        updateLine(map, Array.from(markersSet).map(coord => [coord[0], coord[1]]));
     };
 
     let popup = new maplibregl.Popup().setDOMContent(popupContent).addTo(map);
     return popup;
 }
+
+function getMousePosition(map) {
+    map.on('mousemove', (e) => {
+        document.getElementById('info').innerHTML = 
+        `<p>Lng: ${e.lngLat.lng}</p>
+         <p>Lat: ${e.lngLat.lat}</p>`;
+    });
+}    
 
 function mapUtils(map) {
     MapboxDraw.constants.classes.CONTROL_BASE  = 'maplibregl-ctrl';
@@ -96,5 +159,5 @@ function mapUtils(map) {
     }
 }
 
-export { addMarker, addControlPanel, mapUtils };
+export { addMarker, addControlPanel, mapUtils, getMousePosition, getMarkerSet};
 //говнокод OFF

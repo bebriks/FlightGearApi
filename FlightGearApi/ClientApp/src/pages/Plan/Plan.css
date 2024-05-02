@@ -9,7 +9,12 @@
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: -moz-scrollbars-none;
   }
+
+  .Plan::-webkit-scrollbar { 
+    width: 0 !important 
+  }  
 
 .Plan{
     background-color: white;

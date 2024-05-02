@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { OverlayTrigger, Button, Popover } from "react-bootstrap";
 import "../NavItem/NavItem.css"
 import MainApp from '../PlanTable/PlanTable';
+import PlanPoints from "../PlanPoints/plan-points";
 
 import plane from '../NavItem/imgs/plane.png';
 import analytics from '../NavItem/imgs/analytics.png';
@@ -18,7 +19,7 @@ const NavHeader = () => {
     <Popover id="popover-basic">
       <Popover.Header className={`justify-content-center`} as="h3">Points</Popover.Header>
       <Popover.Body>
-        <MainApp/>
+        <PlanPoints/>
       </Popover.Body>
     </Popover>
   );
@@ -27,7 +28,7 @@ const NavHeader = () => {
     <Popover id="popover-basic">
       <Popover.Header as="h3">Popover Title</Popover.Header>
       <Popover.Body>
-        This is the content of the popover.
+        <MainApp/>
       </Popover.Body>
     </Popover>
   );

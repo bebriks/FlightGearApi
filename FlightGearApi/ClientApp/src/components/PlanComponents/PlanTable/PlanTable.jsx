@@ -1,6 +1,4 @@
 import React, {useState, useEffect} from "react";
-import PlanItem from "../PlanItem/PlanItem";
-import MainMap from "../Map/Map";
 import plus from '../../../assets/img/Union.png';
 import styles from './PlanTable.module.css';
 import { getPlanData } from "../../../api-methods/api-methods";
@@ -72,10 +70,10 @@ const MainApp = () => {
                     <p className={`fs-3`}>Latitude:</p>
                     <input className={`form-control ms-auto`} type="number" name="latitude" required/>
                   </li>
-                  <li className={`d-flex align-items-center px-2`}>
+                  {/* <li className={`d-flex align-items-center px-2`}>
                     <p className={`fs-3`}>Course:</p>
                     <input className={`form-control ms-auto`} type="number" name="heading" required/>
-                  </li>
+                  </li> */}
                   <li className={`d-flex align-items-center px-2`}>
                     <p className={`fs-3`}>Speed(m/s):</p>
                     <input className={`form-control ms-auto`} type="number" step="0.01" name="speed" required/>
@@ -91,52 +89,7 @@ const MainApp = () => {
               </form>
             </div>
           </div>
-          {/* <div className={`col ${styles.cols}`}>
-              <MainMap/>
-          </div> */}
-        </div>  
-        <div className={`row`}>
-            <table>
-              <thead className={`container rounded-4`}>
-                <div className={`rounded-4 ${styles.table_head}`}>
-                  <h2 className={`display-6 text-center ${styles.title_main}`}>Flight stages</h2>
-                  <div className={`container bg-light rounded-4 ${styles.table_head_info}`}>
-                    <tr className={`align-items-center ${styles.table_element}`}>
-                      <th className={`fs-3 `}>Longitude</th>
-                      <th className={`fs-3 `}>Latitude</th>
-                      <th className={`fs-3 `}>Speed(m/s)</th>
-                      <th className={`fs-3 `}>Altitude(m)</th>
-                    </tr>
-                  </div>
-                </div>
-              </thead>
-              <tbody>
-              {/* <div className={styles.scroll}>
-                <FlightItem
-                  onRemoveData={onRemoveData}
-                /> */}
-                <div className={styles.scroll}>
-                  
-                    {plan && plan.map((element, index) =>
-                      <PlanItem
-                        //key={element.id}
-                        //id={element.id}
-                        //flight_name={element.flight_name}
-                        index={index}
-                        longitude={element.longitude}
-                        latitude={element.latitude}
-                        heading={element.heading}
-                        speed={element.speed}
-                        altitude={element.altitude}
-                        onRemoveData={onRemoveData}
-                      />
-                    )}
-                     
-                </div>
-              {/* </div> */}
-              </tbody>
-            </table>
-          </div>  
+        </div>
       </main>     
     </>
   ) 

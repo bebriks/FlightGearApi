@@ -9,36 +9,14 @@ const clearForm = () => {
     form.querySelector('input[name=altitude]').value = '';
 }
 
-export const handlerAddFlight = async (formData, flight, setFlight, sendingData, setSendingData) => {
-  if (!formData.longitude || !formData.latitude || !formData.speed || !formData.altitude) { return; }
-
-  const newFlight = { id: flight.length, ...formData };
-
-  setFlight((prevFlight) => {
-    const updatedFlight = [...prevFlight, newFlight];
-    //logPlanItemData(updatedPlan); Log the updated plan items
-    return updatedFlight;
-  });
-
-  /* try {
-    // Asynchronously send new plan to server
-    await sendDataToServer(newPlan, sendingData, setSendingData);
-    // Here you might want to do something with the response
-  } catch (error) {
-    // Handle any errors that occur during the fetch
-    console.error('There was an error sending the data to the server:', error);
-  } */
-  clearForm();
-};
-
 export const handlerAddPlan = async (formData, plan, setPlan, sendingData, setSendingData) => {
     if (!formData.longitude || !formData.latitude || !formData.speed || !formData.altitude) { return; }
-
+    console.log(formData)
     const newPlan = { id: plan.length, ...formData };
 
     setPlan((prevPlan) => {
       const updatedPlan = [...prevPlan, newPlan];
-      //logPlanItemData(updatedPlan); Log the updated plan items
+      console.log(updatedPlan);
       return updatedPlan;
     });
 
