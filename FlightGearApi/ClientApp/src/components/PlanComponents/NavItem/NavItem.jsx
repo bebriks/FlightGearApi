@@ -17,7 +17,7 @@ const NavHeader = () => {
 
   const popoverPoints = (
     <Popover id="popover-basic">
-      <Popover.Header className={`justify-content-center`} as="h3">Points</Popover.Header>
+      <Popover.Header as="h3">Points</Popover.Header>
       <Popover.Body>
         <PlanPoints/>
       </Popover.Body>
@@ -26,7 +26,7 @@ const NavHeader = () => {
 
   const popoverPlans = (
     <Popover id="popover-basic">
-      <Popover.Header as="h3">Popover Title</Popover.Header>
+      <Popover.Header as="h3">All Flights</Popover.Header>
       <Popover.Body>
         <MainApp/>
       </Popover.Body>
@@ -45,6 +45,7 @@ const NavHeader = () => {
                 show={showPopoverPoints}
                 onToggle={(nextShow) => setShowPopoverPoints(nextShow)}
                 overlay={popoverPoints}
+                rootClose={true}
               >
                 <Button className="btn flight-points" variant="transparent" >
                   <img src={flightPoints} width="50" alt="Flight Points"/>
@@ -58,6 +59,7 @@ const NavHeader = () => {
                 show={showPopoverPlans}
                 onToggle={(nextShow) => setShowPopoverPlans(nextShow)}
                 overlay={popoverPlans}
+                rootClose={true}
               >
                 <Button className="btn flight-plans" variant="transparent">
                   <img src={flightPlans} width="28" alt="Flight Plans"/>

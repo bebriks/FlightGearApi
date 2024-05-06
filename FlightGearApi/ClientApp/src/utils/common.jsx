@@ -11,12 +11,10 @@ const clearForm = () => {
 
 export const handlerAddPlan = async (formData, plan, setPlan, sendingData, setSendingData) => {
     if (!formData.longitude || !formData.latitude || !formData.speed || !formData.altitude) { return; }
-    console.log(formData)
     const newPlan = { id: plan.length, ...formData };
 
     setPlan((prevPlan) => {
       const updatedPlan = [...prevPlan, newPlan];
-      console.log(updatedPlan);
       return updatedPlan;
     });
 
@@ -28,7 +26,7 @@ export const handlerAddPlan = async (formData, plan, setPlan, sendingData, setSe
       // Handle any errors that occur during the fetch
       console.error('There was an error sending the data to the server:', error);
     }
-    clearForm();
+    //clearForm();
 };
 
 export const getData = (form) => {
@@ -37,6 +35,5 @@ export const getData = (form) => {
     for (let [name, value] of dataForm){
       data[name] = value;
     }
-    console.log(data);
     return data;
 };

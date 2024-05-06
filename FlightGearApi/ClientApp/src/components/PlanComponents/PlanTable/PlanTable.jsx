@@ -4,7 +4,6 @@ import styles from './PlanTable.module.css';
 import { getPlanData } from "../../../api-methods/api-methods";
 import { handlerAddPlan } from "../../../utils/common";
 import { getData } from "../../../utils/common";
-import { addMarker } from "../Map/map-functions";
 
 const MainApp = () => {
   const [plan, setPlan] = useState([]);
@@ -13,13 +12,14 @@ const MainApp = () => {
   useEffect(() => { getPlanData(setPlan); }, []);
   const onRemoveData = async () => { await getPlanData(setPlan); }
 
-  const handleClickAddFlight = (evt) => {
+  /* const handleClickAddFlight = (evt) => {
     evt.preventDefault();
     const formData = getData(document.getElementById('formFlight'));
     handlerAddPlan(formData, plan, setPlan, sendingData, setSendingData);
-  };
+  }; */
 
   const handleClickAddPoint = (evt) => {
+    console.log(evt)
     evt.preventDefault();
     const formData = getData(document.getElementById('form'));
     handlerAddPlan(formData, plan, setPlan, sendingData, setSendingData);
@@ -29,7 +29,7 @@ const MainApp = () => {
       <main className={`container`}>
         <div className={`row ${styles.cols}`}>
           <div className={`col ${styles.cols}`}>
-            <div className={`shadow-lg bg-light rounded-4`}>
+            {/* <div className={`shadow-lg bg-light rounded-4`}>
               <form className={`bg-light rounded-4 ${styles.add_stage}`} >
                 <h1 className={`display-5 text-center ${styles.title_main}`}>Add new flight</h1>
                 <ul className={`list-unstyled`}>
@@ -57,7 +57,7 @@ const MainApp = () => {
                   </li>
                 </ul> 
               </form>
-            </div>
+            </div> */}
             <div className={`shadow-lg bg-light rounded-4`}>
               <form className={`bg-light rounded-4 ${styles.add_stage}`} id="form" method='POST' enctype="application/json">
                 <h1 className={`display-5 text-center ${styles.title_main}`}>Add new point</h1>

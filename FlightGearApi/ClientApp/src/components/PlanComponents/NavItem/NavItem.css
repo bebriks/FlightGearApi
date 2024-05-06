@@ -10,3 +10,7 @@
 #popover-basic {
     min-width: fit-content;
 }
+
+.popover-header {
+    text-align: center;
+}

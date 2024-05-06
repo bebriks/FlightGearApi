@@ -17,10 +17,6 @@
     min-width: 250px;
 }
 
-.marker {
-  border-radius: 180px;
-  background-color: #0d6efd;
-}
 
 #calculated-area {
   display: block;
@@ -49,4 +45,13 @@
   text-align: center;
   color: #222;
   background: transparent;
+}
+
+.maplibregl-popup-close-button{
+  aspect-ratio: 1 / 1;
+  width: 20px;
+  font-size: 25px;
+}
+.maplibregl-marker {
+  cursor: pointer;
 }

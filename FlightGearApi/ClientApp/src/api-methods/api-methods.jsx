@@ -18,18 +18,16 @@ export const getPlanData = async (setPlan) => {
     try {
       await axios
         .get(SERVER_URL)
-        .then((response) => {setPlan(response.data); console.log(response.data);})
+        .then((response) => {setPlan(response.data)})
     } catch (err) {
       console.error('There was an error fetching the data:', err)
     }
 };
 
 export const sendDataToServer = async (body, sendingData, setSendingData) => {
-    console.log(body)
       await axios
         .post(SERVER_URL, body)
         .then((response) => {
-          console.log(response)
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }

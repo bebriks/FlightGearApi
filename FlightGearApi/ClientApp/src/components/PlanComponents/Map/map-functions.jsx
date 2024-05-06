@@ -1,16 +1,18 @@
 //говнокод ON
 
-import maplibregl from 'maplibre-gl';
+import maplibregl, { Popup } from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 import * as turf from '@turf/turf'
+//import plane from '../NavItem/imgs/plane.png'
+//import MarkerPopover from '../MarkerPopover/marker-popover';
 
 function addControlPanel(map) {
     map.addControl(new maplibregl.NavigationControl(), 'bottom-right');
 }
 
-function addMarker(map) {
+/* function addMarker(map) {
     let markersSet = new Set();
     map.on('contextmenu', (e) => {
         const lngLat = Object.values(e.lngLat);
@@ -55,7 +57,7 @@ function updateLine(map, coordinates) {
             source: 'line',
             layout: {
                 'line-join': 'round',
-                'line-cap': 'round'
+                'line-cap': 'round',
             },
             paint: {
                 'line-color': '#0000FF',
@@ -63,8 +65,9 @@ function updateLine(map, coordinates) {
                 'line-opacity': 0.5,
             }
         });
-    }
 
+    }
+    //getWay(map, coordinates);
     
 }
 
@@ -83,19 +86,21 @@ function createPopup(data, map, marker, markersSet) {
     let popupContent = document.createElement('div');
 
     popupContent.innerHTML = `
-        <div class="popup-con">
-            <p>Longitude: ${data.lngLat.lng}</p>
-            <p>Latitude: ${data.lngLat.lat}</p>
-            <p class="d-flex align-items-center">Altitude: <input class="altitude form-control" /></p>
-            <p class="d-flex align-items-center">Speed: <input class="speed form-control" /></p>
-            <button class="btn save-popup btn-primary text-light" type="submit">
-                save
-            </button>
-            <button class="btn delete-popup btn-secondary text-light" type="submit">
-                delete
-            </button>
-        </div>
+    <div id="form" class="popup-con">
+        <p name="longitude" required>Longitude: ${data.lngLat.lng}</p>
+        <p name="latitude" required>Latitude: ${data.lngLat.lat}</p>
+        <p class="d-flex align-items-center" name="altitude" required>Altitude: <input class="altitude form-control" /></p>
+        <p class="d-flex align-items-center" name="speed" required>Speed: <input class="speed form-control" /></p>
+        <button class="btn save-popup btn-primary text-light" onClick=${(evt) => handleClickAddPoint(evt)} type="submit">
+            save
+        </button>
+        <button class="btn delete-popup btn-secondary text-light" type="submit">
+            delete
+        </button>
+    </div>
     `;
+
+    console.log(popupContent)
 
     const deleteButton = popupContent.querySelector('.delete-popup');
 
@@ -157,7 +162,7 @@ function mapUtils(map) {
                 alert('Use the draw tools to draw a polygon!');
         }
     }
-}
+} */
 
-export { addMarker, addControlPanel, mapUtils, getMousePosition, getMarkerSet};
+/* export { addMarker, addControlPanel, mapUtils, getMousePosition, getMarkerSet }; */
 //говнокод OFF
